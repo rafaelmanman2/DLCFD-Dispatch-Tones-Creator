@@ -92,7 +92,7 @@ h1{
     transition: 0.3s background-color;
 }
 
-#dispatched_units button:hover{
+#dispatched_units button:enabled:hover{
     cursor: pointer;
 }
 
@@ -100,7 +100,7 @@ h1{
     background-color: transparent;
 }
 
-#dispatched_units button[data-selected="false"]:hover{
+#dispatched_units button[data-selected="false"]:enabled:hover{
     background-color: var(--complementary1);
 }
 
@@ -210,7 +210,7 @@ hr{
 #results_div div:not(#universal_results){
     display: none;
     grid-row: 2;
-    padding: 0 0.5em 1.33em 0.5em;
+    padding: 0 1em 1.33em 1em;
 }
 
 #results_div code{

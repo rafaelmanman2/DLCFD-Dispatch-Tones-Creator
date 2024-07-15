@@ -224,3 +224,16 @@ function copyCommand(type_of_command){
     navigator.clipboard.writeText(text_to_copy);
     alert("Copied!");
 }
+
+// When the webpage loads
+window.onload = () => {
+    // For each button representing a unit in the dispatched_units_input...
+    dispatched_units_input.querySelectorAll("button").forEach((button) => {
+        if(unit_sounds[button.innerHTML] == "") button.disabled = "true";
+    });
+
+    // For each suggestion representing a box number in the box number datalist...
+    document.querySelector("datalist").querySelectorAll("option").forEach((option) => {
+        if(box_number_sounds[option.value] == "") option.disabled = "true";
+    });
+}
