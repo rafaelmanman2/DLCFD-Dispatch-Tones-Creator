@@ -98,6 +98,8 @@ function createTones(){
         incomplete_fields.push("add the box number of the call");
     }else if(!(box_number in box_number_sounds)){
         incomplete_fields.push("input a valid box number");
+    }else if(box_number_sounds[box_number] == ""){
+        incomplete_fields.push("input another box number as this one does not yet have a dispatch sound defined")
     }
     // If the user had at least one field unfilled, alert them of the error and stop creating the tones
     if(incomplete_fields.length > 0){
