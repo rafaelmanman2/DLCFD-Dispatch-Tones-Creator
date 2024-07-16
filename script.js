@@ -5,10 +5,13 @@
 
 // HTML DOM References
 const dispatched_units_input = document.getElementById("dispatched_units");
+const dispatched_units_manual_input = document.getElementById("dispatched_units_manual_entry");
 const box_number_input = document.getElementById("box_number");
 const incident_type_input = document.getElementById("incident_type");
 const incident_channel_input = document.getElementById("incident_channel");
+
 const create_tones_button = document.getElementById("create_tones");
+
 const results_hr = document.querySelector("hr");
 const results_div = document.getElementById("results_div");
 const station1_results = document.getElementById("station1_results");
@@ -39,7 +42,7 @@ const incident_type_sounds = {
 const unit_sounds = {
     "E1": "98474", "Tk1": "98484", "R1": "", "A1-1": "", "A1-2": "", "Br1": "", "U1": "",
     "E2": "98475", "Tk2": "98485", "Sq2": "", "A2": "98466",
-    "E3": "98476", "Sq3": "98482", "Br3": "98469", "U3": "", "T3": "98483", "HM 3": "",
+    "E3": "98476", "Sq3": "98482", "Br3": "98469", "U3": "", "T3": "98483", "HM3": "",
     "E4": "115676", "Tk4": "98486", "R4": "123355", "A4": "115675",
     "DO21": "122659", "DO22": "117646", "M22": "", "BC3": "101689", "BC4": "103044", "C1": "98470"
 };
@@ -85,15 +88,37 @@ function createTones(){
         station_result_div.style.display = "none";
     });
 
+    // If dispatched units were manually entered...
+    if(dispatched_units_manual_input.value !== ""){
+        // Update the list of dispatched units
+        dispatched_units = dispatched_units_manual_input.value.split(",");
+        // Convert to a set to remove any duplicates
+        dispatched_units = [...new Set(dispatched_units)];
+    }
+
     // Update the box number, incident type, and incident channel
     box_number = box_number_input.value;
     incident_type = incident_type_input.options[incident_type_input.selectedIndex].text;
     incident_channel = incident_channel_input.options[incident_channel_input.selectedIndex].text;
 
+    // Ensure that any manually entered dispatched_units have been entered correctly
+    // Declare and initialize a variable storing a boolean on whether any dispatched_units are entered incorrectly
+    var wrongly_dispatched_unit = false;
+    // Ensure the manually entered dispatched units matches the pattern provided in the element's pattern attribute
+    wrongly_dispatched_unit = dispatched_units_manual_input.validity.patternMismatch;
+    // Loop over each dispatched unit and for each...
+    dispatched_units.forEach((unit) => {
+        if(!(unit in unit_sounds) || unit_sounds.unit == "") wrongly_dispatched_unit = true;
+    });
+
     // Ensure that all the required fields have been completed
     // Declare and initialize a list for the fields requiring completion
     var incomplete_fields = [];
-    if(dispatched_units.length == 0) incomplete_fields.push("add at least one unit to dispatch");
+    if(dispatched_units.length == 0){
+        incomplete_fields.push("add at least one unit to dispatch");
+    }else if(wrongly_dispatched_unit){
+        incomplete_fields.push("check your manually entered list of dispatched units");
+    }
     if(box_number == ""){
         incomplete_fields.push("add the box number of the call");
     }else if(!(box_number in box_number_sounds)){
@@ -214,6 +239,9 @@ function createTones(){
     
     // Reenable the create_tones button
     create_tones_button.removeAttribute("disabled");
+
+    // Scroll to the results div
+    location.hash = "#results_div";
 }
 
 function copyCommand(type_of_command){
@@ -238,4 +266,7 @@ window.onload = () => {
     document.querySelector("datalist").querySelectorAll("option").forEach((option) => {
         if(box_number_sounds[option.value] == "") option.disabled = "true";
     });
+
+    // Set the footer
+    document.getElementById("year").innerHTML = new Date().getFullYear();
 }

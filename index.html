@@ -8,153 +8,165 @@
     <link rel="icon" href="DLCFD Logo Transparent.webp" sizes="192x192">
 </head>
 <body>
-    <img src="DLCFD Logo Transparent.webp">
-    <h1>DLCFD Dispatch Tones Creator</h1>
-    <div id="dispatch_details">
-        <div id="dispatched_units_div">
-            <h3>Dispatched Units</h3>
-            <!-- <input type="text" id="dispatched_units"> -->
-            <div id="dispatched_units">
-                <div class="grid-border" style="grid-column: 1"></div>
-                <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E1')" >E1</button>
-                <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk1')">Tk1</button>
-                <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('R1')">R1</button>
-                <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A1-1')">A1-1</button>
-                <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('A1-2')">A1-2</button>
-                <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('Br1')">Br1</button>
-                <button style="grid-row: 7;" data-selected="false" onclick="updateDispatchedUnits('U1')">U1</button>
-                
-                <div class="grid-border" style="grid-column: 2"></div>
-                <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E2')">E2</button>
-                <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk2')">Tk2</button>
-                <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('Sq2')">Sq2</button>
-                <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A2')">A2</button>
+    <div id="main">
+        <header>
+            <img src="DLCFD Logo Transparent.webp">
+            <h1>DLCFD Dispatch Tones Creator</h1>
+        </header>
+        <div id="dispatch_details">
+            <div id="dispatched_units_div">
+                <h3>Dispatched Units</h3>
+                <!-- <input type="text" id="dispatched_units"> -->
+                <div id="dispatched_units">
+                    <div class="grid-border" style="grid-column: 1"></div>
+                    <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E1')" >E1</button>
+                    <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk1')">Tk1</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('R1')">R1</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A1-1')">A1-1</button>
+                    <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('A1-2')">A1-2</button>
+                    <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('Br1')">Br1</button>
+                    <button style="grid-row: 7;" data-selected="false" onclick="updateDispatchedUnits('U1')">U1</button>
+                    
+                    <div class="grid-border" style="grid-column: 2"></div>
+                    <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E2')">E2</button>
+                    <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk2')">Tk2</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('Sq2')">Sq2</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A2')">A2</button>
 
-                <div class="grid-border" style="grid-column: 3"></div>
-                <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E3')">E3</button>
-                <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Sq3')">Sq3</button>
-                <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('Br3')">Br3</button>
-                <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('U3')">U3</button>
-                <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('T3')">T3</button>
-                <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('HM 3')">HM 3</button>
+                    <div class="grid-border" style="grid-column: 3"></div>
+                    <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E3')">E3</button>
+                    <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Sq3')">Sq3</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('Br3')">Br3</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('U3')">U3</button>
+                    <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('T3')">T3</button>
+                    <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('HM3')">HM3</button>
 
-                <div class="grid-border" style="grid-column: 4"></div>
-                <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E4')">E4</button>
-                <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk4')">Tk4</button>
-                <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('R4')">R4</button>
-                <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A4')">A4</button>
+                    <div class="grid-border" style="grid-column: 4"></div>
+                    <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('E4')">E4</button>
+                    <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('Tk4')">Tk4</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('R4')">R4</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('A4')">A4</button>
 
-                <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('DO21')">DO21</button>
-                <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('DO22')">DO22</button>
-                <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('M22')">M22</button>
-                <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('BC3')">BC3</button>
-                <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('BC4')">BC4</button>
-                <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('C1')">C1</button>
+                    <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('DO21')">DO21</button>
+                    <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('DO22')">DO22</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('M22')">M22</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('BC3')">BC3</button>
+                    <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('BC4')">BC4</button>
+                    <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('C1')">C1</button>
+                </div>
+                <p>Manual Entry:</p>
+                <input type="text" id="dispatched_units_manual_entry" placeholder="Enter units each separated by a single comma" minlength="2" pattern="^[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?(?:,[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?)*$">
+                <!-- Consider changing pattern to use | with simple strings Eg. E|Tk|R etc. -->
+            </div>
+            <div id="box_number_div">
+                <h3>Box Number</h3>
+                <input type="number" id="box_number" list="box_numbers" min="101" max="409">
+                <datalist id="box_numbers">
+                    <option value="101"></option>
+                    <option value="102"></option>
+                    <option value="103"></option>
+                    <option value="104"></option>
+                    <option value="105"></option>
+                    <option value="106"></option>
+                    <option value="107"></option>
+                    <option value="108"></option>
+                    <option value="109"></option>
+                    <option value="110"></option>
+                    <option value="111"></option>
+                    <option value="112"></option>
+                    <option value="201"></option>
+                    <option value="202"></option>
+                    <option value="203"></option>
+                    <option value="204"></option>
+                    <option value="205"></option>
+                    <option value="206"></option>
+                    <option value="207"></option>
+                    <option value="208"></option>
+                    <option value="209"></option>
+                    <option value="301"></option>
+                    <option value="302"></option>
+                    <option value="303"></option>
+                    <option value="304"></option>
+                    <option value="305"></option>
+                    <option value="306"></option>
+                    <option value="307"></option>
+                    <option value="308"></option>
+                    <option value="309"></option>
+                    <option value="310"></option>
+                    <option value="311"></option>
+                    <option value="401"></option>
+                    <option value="402"></option>
+                    <option value="403"></option>
+                    <option value="404"></option>
+                    <option value="405"></option>
+                    <option value="406"></option>
+                    <option value="407"></option>
+                    <option value="408"></option>
+                    <option value="409"></option>
+                </datalist>
+            </div>
+            <div id="incident_type_div">
+                <h3>Incident Type</h3>
+                <select id="incident_type">
+                    <optgroup label="Fire-Related">
+                        <option>Building Fire</option>
+                        <option>Fire Alarm</option>
+                        <option>Brush Fire</option>
+                        <option>Odor Investigation</option>
+                    </optgroup>
+                    <optgroup label="EMS-Related">
+                        <option>Traumatic Injury</option>
+                        <option>Unknown Problem</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div id="incident_channel_div">
+                <h3>Incident Channel</h3>
+                <select id="incident_channel">
+                    <optgroup label="Fire-Related">
+                        <option>FD OPS 1</option>
+                        <option>FD OPS 2</option>
+                        <option>FD OPS 3</option>
+                        <option>FD OPS 4</option>
+                    </optgroup>
+                    <optgroup label="EMS-Related">
+                        <option>EMS OPS 1</option>
+                        <option>EMS OPS 2</option>
+                        <option>EMS OPS 3</option>
+                    </optgroup>
+                </select>
             </div>
         </div>
-        <div id="box_number_div">
-            <h3>Box Number</h3>
-            <input type="number" id="box_number" list="box_numbers" min="101" max="409">
-            <datalist id="box_numbers">
-                <option value="101"></option>
-                <option value="102"></option>
-                <option value="103"></option>
-                <option value="104"></option>
-                <option value="105"></option>
-                <option value="106"></option>
-                <option value="107"></option>
-                <option value="108"></option>
-                <option value="109"></option>
-                <option value="110"></option>
-                <option value="111"></option>
-                <option value="112"></option>
-                <option value="201"></option>
-                <option value="202"></option>
-                <option value="203"></option>
-                <option value="204"></option>
-                <option value="205"></option>
-                <option value="206"></option>
-                <option value="207"></option>
-                <option value="208"></option>
-                <option value="209"></option>
-                <option value="301"></option>
-                <option value="302"></option>
-                <option value="303"></option>
-                <option value="304"></option>
-                <option value="305"></option>
-                <option value="306"></option>
-                <option value="307"></option>
-                <option value="308"></option>
-                <option value="309"></option>
-                <option value="310"></option>
-                <option value="311"></option>
-                <option value="401"></option>
-                <option value="402"></option>
-                <option value="403"></option>
-                <option value="404"></option>
-                <option value="405"></option>
-                <option value="406"></option>
-                <option value="407"></option>
-                <option value="408"></option>
-                <option value="409"></option>
-            </datalist>
-        </div>
-        <div id="incident_type_div">
-            <h3>Incident Type</h3>
-            <select id="incident_type">
-                <optgroup label="Fire-Related">
-                    <option>Building Fire</option>
-                    <option>Fire Alarm</option>
-                    <option>Brush Fire</option>
-                    <option>Odor Investigation</option>
-                </optgroup>
-                <optgroup label="EMS-Related">
-                    <option>Traumatic Injury</option>
-                    <option>Unknown Problem</option>
-                </optgroup>
-            </select>
-        </div>
-        <div id="incident_channel_div">
-            <h3>Incident Channel</h3>
-            <select id="incident_channel">
-                <optgroup label="Fire-Related">
-                    <option>FD OPS 1</option>
-                    <option>FD OPS 2</option>
-                    <option>FD OPS 3</option>
-                    <option>FD OPS 4</option>
-                </optgroup>
-                <optgroup label="EMS-Related">
-                    <option>EMS OPS 1</option>
-                    <option>EMS OPS 2</option>
-                    <option>EMS OPS 3</option>
-                </optgroup>
-            </select>
+        <button id="create_tones" onclick="createTones()">Create Dispatch Tones</button>
+        <hr>
+        <div id="results_div">
+            <div id="universal_results">
+                <h4>Universal Dispatch Tones</h4>
+                <code onclick="copyCommand('universal')"></code>
+            </div>
+            <div id="station1_results">
+                <h4>Station 1 Dispatch Tones</h4>
+                <code onclick="copyCommand('station1')"></code>
+            </div>
+            <div id="station2_results">
+                <h4>Station 2 Dispatch Tones</h4>
+                <code onclick="copyCommand('station2')"></code>
+            </div>
+            <div id="station3_results">
+                <h4>Station 3 Dispatch Tones</h4>
+                <code onclick="copyCommand('station3')"></code>
+            </div>
+            <div id="station4_results">
+                <h4>Station 4 Dispatch Tones</h4>
+                <code onclick="copyCommand('station4')"></code>
+            </div>
         </div>
     </div>
-    <button id="create_tones" onclick="createTones()">Create Dispatch Tones</button>
-    <hr>
-    <div id="results_div">
-        <div id="universal_results">
-            <h4>Universal Dispatch Tones</h4>
-            <code onclick="copyCommand('universal')"></code>
-        </div>
-        <div id="station1_results">
-            <h4>Station 1 Dispatch Tones</h4>
-            <code onclick="copyCommand('station1')"></code>
-        </div>
-        <div id="station2_results">
-            <h4>Station 2 Dispatch Tones</h4>
-            <code onclick="copyCommand('station2')"></code>
-        </div>
-        <div id="station3_results">
-            <h4>Station 3 Dispatch Tones</h4>
-            <code onclick="copyCommand('station3')"></code>
-        </div>
-        <div id="station4_results">
-            <h4>Station 4 Dispatch Tones</h4>
-            <code onclick="copyCommand('station4')"></code>
-        </div>
-    </div>
+    <footer>
+        <small>
+            © <span id="year"></span> by rafaelmanman. All rights reserved.
+        </small>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
