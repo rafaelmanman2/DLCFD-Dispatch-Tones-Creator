@@ -30,27 +30,22 @@ var incident_channel = incident_channel_input.options[incident_channel_input.sel
 // Stored Dispatch Sounds
 const attention_tones = {"FD": "98464", "EMS": "98463"};
 const box_number_sounds = {
-    "101": "", "102": "", "103": "110073", "104": "", "105": "", "106": "", "107": "", "108": "", "109": "", "110": "", "111": "", "112": "",
-    "201": "", "202": "", "203": "98556", "204": "", "205": "", "206": "", "207": "", "208": "", "209": "",
-    "301": "", "302": "", "303": "", "304": "", "305": "", "306": "", "307": "", "308": "", "309": "", "310": "", "311": "",
+    "101": "", "102": "98536", "103": "110073", "104": "", "105": "", "106": "", "107": "", "108": "", "109": "", "110": "98543", "111": "", "112": "",
+    "201": "", "202": "98555", "203": "98556", "204": "", "205": "98558", "206": "", "207": "", "208": "", "209": "",
+    "301": "98569", "302": "", "303": "", "304": "", "305": "", "306": "", "307": "", "308": "", "309": "", "310": "", "311": "",
     "401": "", "402": "98604", "403": "98605", "404": "", "405": "", "406": "", "407": "", "408": "", "409": ""
 };
 const incident_type_sounds = {
-    "Building Fire": "100536", "Fire Alarm": "98622", "Brush Fire": "122973", "Odor Investigation": "98629",
-    "Traumatic Injury": "98622", "Unknown Problem": "98524"
+    "Building Fire": "100536", "Fire Alarm": "98622", "Brush Fire": "122973", "Odor Investigation": "98629", "Smoke Investigation": "98632",
+    "Traumatic Injury": "98622", "Unknown Problem": "98524", "Major Traffic Accident": "98881"
 };
 const unit_sounds = {
-    "E1": "98474", "Tk1": "98484", "R1": "", "A1-1": "", "A1-2": "", "Br1": "", "U1": "",
-    "E2": "98475", "Tk2": "98485", "Sq2": "", "A2": "98466",
+    "E1": "98474", "Tk1": "98484", "R1": "98479", "A1-1": "122971", "A1-2": "", "Br1": "98468", "U1": "98487",
+    "E2": "98475", "Tk2": "98485", "Sq2": "125905", "A2": "98466",
     "E3": "98476", "Sq3": "98482", "Br3": "98469", "U3": "", "T3": "98483", "HM3": "",
     "E4": "115676", "Tk4": "98486", "R4": "123355", "A4": "115675",
     "DO21": "122659", "DO22": "117646", "M22": "", "BC3": "101689", "BC4": "103044", "C1": "98470"
 };
-
-const incident_channel_sounds = {
-    "FD OPS 1": "98532", "FD OPS 2": "98533", "FD OPS 3": "", "FD OPS 4": "",
-    "EMS OPS 1": "98528", "EMS OPS 2": "", "EMS OPS 3": ""
-}
 
 // Miscellaneous Variables
 var units_without_stations = ["DO21", "DO22", "M22", "BC3", "BC4", "C1"];
@@ -259,11 +254,13 @@ function copyCommand(type_of_command){
 window.onload = () => {
     // For each button representing a unit in the dispatched_units_input...
     dispatched_units_input.querySelectorAll("button").forEach((button) => {
+        // If the unit does not have a dispatch sound defined, disable its associated button
         if(unit_sounds[button.innerHTML] == "") button.disabled = "true";
     });
 
     // For each suggestion representing a box number in the box number datalist...
     document.querySelector("datalist").querySelectorAll("option").forEach((option) => {
+        // If the box number does not have a dispatch sound defined, disable its associated suggestion
         if(box_number_sounds[option.value] == "") option.disabled = "true";
     });
 
