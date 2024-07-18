@@ -47,6 +47,11 @@ const unit_sounds = {
     "DO21": "122659", "DO22": "117646", "M22": "", "BC3": "101689", "BC4": "103044", "C1": "98470"
 };
 
+const incident_channel_sounds = {
+    "FD OPS 1": "98532", "FD OPS 2": "98533", "FD OPS 3": "", "FD OPS 4": "",
+    "EMS OPS 1": "98528", "EMS OPS 2": "", "EMS OPS 3": ""
+}
+
 // Miscellaneous Variables
 var units_without_stations = ["DO21", "DO22", "M22", "BC3", "BC4", "C1"];
 
