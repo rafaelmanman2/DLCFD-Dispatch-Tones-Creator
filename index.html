@@ -49,10 +49,11 @@
 
                     <button style="grid-row: 1;" data-selected="false" onclick="updateDispatchedUnits('DO21')">DO21</button>
                     <button style="grid-row: 2;" data-selected="false" onclick="updateDispatchedUnits('DO22')">DO22</button>
-                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('M22')">M22</button>
-                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('BC3')">BC3</button>
-                    <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('BC4')">BC4</button>
-                    <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('C1')">C1</button>
+                    <button style="grid-row: 3;" data-selected="false" onclick="updateDispatchedUnits('M1')">M1</button>
+                    <button style="grid-row: 4;" data-selected="false" onclick="updateDispatchedUnits('M22')">M22</button>
+                    <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('BC3')">BC3</button>
+                    <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('BC4')">BC4</button>
+                    <button style="grid-row: 7;" data-selected="false" onclick="updateDispatchedUnits('C1')">C1</button>
                 </div>
                 <p>Manual Entry:</p>
                 <input type="text" id="dispatched_units_manual_entry" placeholder="Enter units each separated by a single comma" minlength="2" pattern="^[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?(?:,[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?)*$">
@@ -119,6 +120,7 @@
                         <option>Traumatic Injury</option>
                         <option>Unknown Problem</option>
                         <option>Major Traffic Accident</option>
+                        <option>Full Arrest</option>
                     </optgroup>
                 </select>
             </div>
