@@ -53,7 +53,7 @@ const incident_channel_sounds = {
 }
 
 // Miscellaneous Variables
-var units_without_stations = ["DO21", "DO22", "M22", "BC3", "BC4", "C1"];
+var units_without_stations = ["DO21", "DO22", "M1", "M22", "BC3", "BC4", "C1"];
 
 /**
   * Updates the styling of the dispatched units list when any of them are clicked
@@ -202,30 +202,33 @@ function createTones(){
     results_div.querySelector("code").innerHTML = full_tones.command;
 
     // Create the tones specific to each of the dispatched stations
-    // Loop over the dispatched stations and for each one...
-    dispatched_stations.forEach((station) => {
-        // Declare and initialize a variable storing a reference to the station's dispatch sounds
-        let station_dispatch_sounds = station_tones["station" + station]
-        // Loop over each sound in the list of dispatch sounds for the station's dispatch and for each sound...
-        for(let i=0; i<station_dispatch_sounds.list.length; i++){
-            // Add the " sound#: " key to the full command string
-            station_dispatch_sounds.command += " sound_" + (i + 1) + ": ";
-            // Add the dispatch sound to the full command string
-            station_dispatch_sounds.command += station_dispatch_sounds.list[i];
-            
-            // Add the " sound#: " key to the shortened command string if it isn't the first sound
-            if(i > 0) station_dispatch_sounds.shortened_command += " sound_" + (i + 1) + ": ";
-            // Add the dispatch sound to the shortened command string
-            station_dispatch_sounds.shortened_command += station_dispatch_sounds.list[i];
-        }
-        // ref_anchor1
-        // Add the final per-station command to its associated HTML element
-        station_result_divs[station - 1].querySelector("code").innerHTML = station_dispatch_sounds.command;
-        // If the station's results div is not the first one, add a left border
-        if(Number(station) !== Math.min(...dispatched_stations.map((x) => Number(x)))) station_result_divs[station - 1].style.borderLeft = "0.25px solid var(--primary2)";
-        // Reveal the station's results div
-        station_result_divs[station - 1].style.display = "block";
-    });
+    // If more than one station has been dispatched
+    if(dispatched_stations.length > 1){
+        // Loop over the dispatched stations and for each one...
+        dispatched_stations.forEach((station) => {
+            // Declare and initialize a variable storing a reference to the station's dispatch sounds
+            let station_dispatch_sounds = station_tones["station" + station]
+            // Loop over each sound in the list of dispatch sounds for the station's dispatch and for each sound...
+            for(let i=0; i<station_dispatch_sounds.list.length; i++){
+                // Add the " sound#: " key to the full command string
+                station_dispatch_sounds.command += " sound_" + (i + 1) + ": ";
+                // Add the dispatch sound to the full command string
+                station_dispatch_sounds.command += station_dispatch_sounds.list[i];
+                
+                // Add the " sound#: " key to the shortened command string if it isn't the first sound
+                if(i > 0) station_dispatch_sounds.shortened_command += " sound_" + (i + 1) + ": ";
+                // Add the dispatch sound to the shortened command string
+                station_dispatch_sounds.shortened_command += station_dispatch_sounds.list[i];
+            }
+            // ref_anchor1
+            // Add the final per-station command to its associated HTML element
+            station_result_divs[station - 1].querySelector("code").innerHTML = station_dispatch_sounds.command;
+            // If the station's results div is not the first one, add a left border
+            if(Number(station) !== Math.min(...dispatched_stations.map((x) => Number(x)))) station_result_divs[station - 1].style.borderLeft = "0.25px solid var(--primary2)";
+            // Reveal the station's results div
+            station_result_divs[station - 1].style.display = "block";
+        });
+    }
 
     // Reveal the necessary HTML elements
     // Reveal the horizontal bar
