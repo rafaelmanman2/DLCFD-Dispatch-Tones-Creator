@@ -9,6 +9,7 @@ const dispatched_units_manual_input = document.getElementById("dispatched_units_
 const box_number_input = document.getElementById("box_number");
 const incident_type_input = document.getElementById("incident_type");
 const incident_channel_input = document.getElementById("incident_channel");
+const dispatch_format_input = document.getElementById("dispatch_format");
 
 const create_tones_button = document.getElementById("create_tones");
 
@@ -26,6 +27,7 @@ const station_result_divs = [station1_results, station2_results, station3_result
 var box_number = box_number_input.text;
 var incident_type = incident_type_input.options[incident_type_input.selectedIndex].text;
 var incident_channel = incident_channel_input.options[incident_channel_input.selectedIndex].text;
+var dispatch_format = dispatch_format_input.options[dispatch_format_input.selectedIndex].text.split(" ");
 
 // Stored Dispatch Sounds
 const attention_tones = {"FD": "98464", "EMS": "98463"};
@@ -96,10 +98,15 @@ function createTones(){
         dispatched_units = [...new Set(dispatched_units)];
     }
 
-    // Update the box number, incident type, and incident channel
+    // Update the box number, incident type, incident channel, and dispatch format
     box_number = box_number_input.value;
     incident_type = incident_type_input.options[incident_type_input.selectedIndex].text;
     incident_channel = incident_channel_input.options[incident_channel_input.selectedIndex].text;
+    dispatch_format = dispatch_format_input.options[dispatch_format_input.selectedIndex].text.split(" ");
+    // Declare and initialize a variable storing the call type based on the string of characters before the first space in the selected incident channel
+    var call_type = incident_channel.split(" ")[0];
+    // Combine the units, box_number, incident_type, and incident_channel into the dispatch_elements object
+    const dispatch_elements = {"BOX": box_number_sounds[box_number], "TYPE": incident_type_sounds[incident_type], "CHANNEL": incident_channel_sounds[incident_channel]};
 
     // Ensure that any manually entered dispatched_units have been entered correctly
     // Declare and initialize a variable storing a boolean on whether any dispatched_units are entered incorrectly
@@ -131,6 +138,7 @@ function createTones(){
         alert("Please " + incomplete_fields.join(" and ") + ".");
         // Reenable the create_tones button
         create_tones_button.removeAttribute("disabled");
+        // End the execution of the function
         return;
     }
 
@@ -138,50 +146,47 @@ function createTones(){
     var full_tones = {"command": "/queue", "shortened_command": "", "list": []};
     var station_tones = {"station1": {"command": "/queue", "shortened_command": "", "list": []}, "station2": {"command": "/queue", "shortened_command": "", "list": []}, "station3": {"command": "/queue", "shortened_command": "", "list": []}, "station4": {"command": "/queue", "shortened_command": "", "list": []}};
 
+    
     // Create the master tones for all stations
-    // Declare and initialize a variable storing the call type based on the string of characters before the first space in the selected incident channel
-    var call_type = incident_channel.split(" ")[0];
-    // Add the appropriate attention tone based on the call type
-    full_tones.list.push(attention_tones[call_type]);
-    // Add the appropriate sound based on the box number
-    full_tones.list.push(box_number_sounds[box_number]);
-    // Add the appropriate sound based on the incident type
-    full_tones.list.push(incident_type_sounds[incident_type]);
-    // Loop over the dispatched stations and for each one...
-    for(let i=0; i<4; i++){
-        // Declare and initialize a variable storing a reference to the station's dispatch sounds list
-        let station_dispatch_sounds = station_tones["station" + (i + 1)].list
-        // Add the appropriate attention tone based on the call type
-        station_dispatch_sounds.push(attention_tones[call_type]);
-        // Add the appropriate sound based on the box number
-        station_dispatch_sounds.push(box_number_sounds[box_number]);
-        // Add the appropriate sound based on the incident type
-        station_dispatch_sounds.push(incident_type_sounds[incident_type]);
-    }
-
     // Clear the old list of dispatched stations
     dispatched_stations = [];
-    // Loop over the dispatched units and for each one...
-    dispatched_units.forEach((unit) => {
-        // Add the unit's dispatch sound to the full tones list
-        full_tones.list.push(unit_sounds[unit]);
-        // If the unit has an associated station...
-        if(!units_without_stations.includes(unit)){
-            // Define the unit's station as the last character of the unit's name
-            let station_of_unit = unit[unit.length - 1];
-            // Add the unit's dispatch sound to its per-station list
-            station_tones["station" + station_of_unit].list.push(unit_sounds[unit]);
-            // If the unit's station is not already in the list, add the unit's station to the list
-            if(!dispatched_stations.includes(station_of_unit)) dispatched_stations.push(station_of_unit);
-        }
-    });
 
-    // Add the incident channel's dispatch sound to the full tones list
-    full_tones.list.push(incident_channel_sounds[incident_channel]);
-    // Loop over the dispatched stations and for each one...
-    dispatched_stations.forEach((station) => {
+    // Add the attention tone dispatch sound to the full tones list
+    full_tones.list.push(attention_tones[call_type]);
+    // Loop over each active station and for each of them...
+    for(let i=0; i<4; i++){
         // Add the incident channel's dispatch sound to its per-station list
-        station_tones["station" + station].list.push(incident_channel_sounds[incident_channel]);
+        station_tones["station" + (i + 1)].list.push(attention_tones[call_type]);
+    }
+
+    // Loop over each of the elements of the selected dispatch format and for each of them...
+    dispatch_format.forEach((dispatch_element) => {
+        // If the dispatch element is the units, then...
+        if(dispatch_element == "UNITS"){
+            // Loop over each of the dispatched units and for each of them...
+            dispatched_units.forEach((unit) => {
+                // Add the unit's dispatch sound to the full tones list
+                full_tones.list.push(unit_sounds[unit]);
+                // If the unit has an associated station...
+                if(!units_without_stations.includes(unit)){
+                    // Define the unit's station as the last character of the unit's name
+                    let station_of_unit = unit[unit.length - 1];
+                    // Add the unit's dispatch sound to its per-station list
+                    station_tones["station" + station_of_unit].list.push(unit_sounds[unit]);
+                    // If the unit's station is not already in the list, add the unit's station to the list
+                    if(!dispatched_stations.includes(station_of_unit)) dispatched_stations.push(station_of_unit);
+                }
+            });
+        // Otherwise, if the dispatch element is another element that is within the defined dispatch elements, then
+        }else if(dispatch_element in dispatch_elements){
+            // Add the definition of the dispatch element to the full_tones sound list
+            full_tones.list.push(dispatch_elements[dispatch_element]);
+            // Loop over each active station and for each of them...
+            for(let i=0; i<4; i++){
+                // Add the definition of the dispatch element to the station's sound list
+                station_tones["station" + (i + 1)].list.push(dispatch_elements[dispatch_element]);
+            }
+        } 
     });
 
     // Convert the list of sound IDs into a command
