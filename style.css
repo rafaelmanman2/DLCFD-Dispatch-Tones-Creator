@@ -169,23 +169,28 @@ input, select{
 
 #box_number_div{
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1 / 2;
 }
 
 #box_number{
     min-width: 40px;
 }
 
-#dispatch_details div:nth-child(-n + 2){
+#dispatch_details div:nth-child(-n + 3){
     border-right: 0.25px solid var(--primary2);
 }
 
 #incident_type_div{
+    grid-column: 2;
+    grid-row: 2 / 3;
+}
+
+#incident_channel_div{
     grid-column: 3;
     grid-row: 1 / 2;
 }
 
-#incident_channel_div{
+#dispatch_format_div{
     grid-column: 3;
     grid-row: 2 / 3;
 }
