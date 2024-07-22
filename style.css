@@ -146,7 +146,7 @@ h1{
     grid-column: 4;
 }
 
-#dispatched_units button:nth-of-type(n + 22):nth-of-type(-n + 27){
+#dispatched_units button:nth-of-type(n + 22):nth-of-type(-n + 28){
     grid-column: 5;
 }
 
