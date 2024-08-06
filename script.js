@@ -5,6 +5,7 @@
 
 // HTML DOM References
 const dispatched_units_input = document.getElementById("dispatched_units");
+const dispatched_units_clear = document.getElementById("dispatched_units_clear");
 const dispatched_units_manual_input = document.getElementById("dispatched_units_manual_entry");
 const box_number_input = document.getElementById("box_number");
 const incident_type_input = document.getElementById("incident_type");
@@ -73,6 +74,11 @@ function updateDispatchedUnits(unit){
             }
         }
     });
+    if(dispatched_units.length > 0){
+        dispatched_units_clear.removeAttribute("disabled");
+    }else{
+        dispatched_units_clear.disabled = "true";
+    }
 }
 
 function clearDispatchedUnits(){
@@ -82,6 +88,7 @@ function clearDispatchedUnits(){
         }
     });
     dispatched_units = [];
+    dispatched_units_clear.disabled = "true";
 }
 
 /**
