@@ -86,8 +86,8 @@ h1{
 #dispatched_units{
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-    padding: 0 0 1em 0 !important;
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    padding: 0 0 0.5em 0 !important;
     border: none !important;
     margin: 0 5px;
 }
@@ -148,6 +148,18 @@ h1{
 
 #dispatched_units button:nth-of-type(n + 22):nth-of-type(-n + 28){
     grid-column: 5;
+}
+
+#dispatched_units button:last-of-type{
+    grid-row: 8;
+    grid-column: 1 / span 5;
+    background-color: transparent;
+    padding: 0.25em 0.5em;
+    margin: 0.5em auto 0 auto;
+}
+
+#dispatched_units button:last-of-type:enabled:hover{
+    background-color: var(--complementary1);
 }
 
 input, select{

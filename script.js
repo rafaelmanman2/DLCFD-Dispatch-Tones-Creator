@@ -75,6 +75,15 @@ function updateDispatchedUnits(unit){
     });
 }
 
+function clearDispatchedUnits(){
+    Array.from(dispatched_units_input.children).forEach((selected_unit) => {
+        if(selected_unit.nodeName == "BUTTON" && !selected_unit.disabled && selected_unit.dataset.selected == "true"){
+            selected_unit.dataset.selected = "false";
+        }
+    });
+    dispatched_units = [];
+}
+
 /**
  * Creates the dispatch tones based on the provided call details
  */
@@ -188,6 +197,51 @@ function createTones(){
             }
         } 
     });
+
+    /*
+    // Add the appropriate attention tone based on the call type
+    full_tones.list.push(attention_tones[call_type]);
+    // Add the appropriate sound based on the box number
+    full_tones.list.push(box_number_sounds[box_number]);
+    // Add the appropriate sound based on the incident type
+    full_tones.list.push(incident_type_sounds[incident_type]);
+    // Loop over the dispatched stations and for each one...
+    for(let i=0; i<4; i++){
+        // Declare and initialize a variable storing a reference to the station's dispatch sounds list
+        let station_dispatch_sounds = station_tones["station" + (i + 1)].list
+        // Add the appropriate attention tone based on the call type
+        station_dispatch_sounds.push(attention_tones[call_type]);
+        // Add the appropriate sound based on the box number
+        station_dispatch_sounds.push(box_number_sounds[box_number]);
+        // Add the appropriate sound based on the incident type
+        station_dispatch_sounds.push(incident_type_sounds[incident_type]);
+    }
+
+    // Clear the old list of dispatched stations
+    dispatched_stations = [];
+    // Loop over the dispatched units and for each one...
+    dispatched_units.forEach((unit) => {
+        // Add the unit's dispatch sound to the full tones list
+        full_tones.list.push(unit_sounds[unit]);
+        // If the unit has an associated station...
+        if(!units_without_stations.includes(unit)){
+            // Define the unit's station as the last character of the unit's name
+            let station_of_unit = unit[unit.length - 1];
+            // Add the unit's dispatch sound to its per-station list
+            station_tones["station" + station_of_unit].list.push(unit_sounds[unit]);
+            // If the unit's station is not already in the list, add the unit's station to the list
+            if(!dispatched_stations.includes(station_of_unit)) dispatched_stations.push(station_of_unit);
+        }
+    });
+
+    // Add the incident channel's dispatch sound to the full tones list
+    full_tones.list.push(incident_channel_sounds[incident_channel]);
+    // Loop over the dispatched stations and for each one...
+    dispatched_stations.forEach((station) => {
+        // Add the incident channel's dispatch sound to its per-station list
+        station_tones["station" + station].list.push(incident_channel_sounds[incident_channel]);
+    });
+    */
 
     // Convert the list of sound IDs into a command
     // Loop over each sound in the list of dispatch sounds for the full dispatch and for each sound...

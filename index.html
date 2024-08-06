@@ -54,6 +54,8 @@
                     <button style="grid-row: 5;" data-selected="false" onclick="updateDispatchedUnits('BC3')">BC3</button>
                     <button style="grid-row: 6;" data-selected="false" onclick="updateDispatchedUnits('BC4')">BC4</button>
                     <button style="grid-row: 7;" data-selected="false" onclick="updateDispatchedUnits('C1')">C1</button>
+                    
+                    <button onclick="clearDispatchedUnits()">Clear Selected Units</button>
                 </div>
                 <p>Manual Entry:</p>
                 <input type="text" id="dispatched_units_manual_entry" placeholder="Enter units each separated by a single comma" minlength="2" pattern="^[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?(?:,[ABCDEHMRSTU][CkMOqr2]?[1-4](-[1-2])?)*$">
@@ -144,6 +146,7 @@
                 <h3>Dispatch Format</h3>
                 <select id="dispatch_format">
                     <option>BOX TYPE UNITS CHANNEL</option>
+                    <option>BOX UNITS TYPE CHANNEL</option>
                     <option>TYPE BOX UNITS CHANNEL</option>
                     <option>TYPE UNITS BOX CHANNEL</option>
                     <option>UNITS BOX TYPE CHANNEL</option>
